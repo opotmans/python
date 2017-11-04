@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt1
 import seaborn as sb
 
 
-# Read in white wine data test
+# Read in white wine data test &é"
 white = pd.read_csv ("http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv", sep=';')
 # Read in red wine data 
 red = pd.read_csv("http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv", sep=';')
