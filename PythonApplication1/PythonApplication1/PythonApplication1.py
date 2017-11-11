@@ -26,8 +26,6 @@ np.random.seed(12345)
 s3 = pd.Series(np.random.normal(size=5))
 print(s3)
 
-
-
 #Create a serie of times with start and end, possible to define the frequencies
 dates = pd.date_range ('2017-04-01','2017-04-04')
 print (dates)
@@ -41,6 +39,15 @@ print (temps_diff.mean())
 temps_df = pd.DataFrame({'brussels' : temp1, 'namur': temp2})
 print (temps_df)
 
+#reindexation of a series
+s3.index = ['a','b','c','d','e']
+print (s3)
+s3= s3.reindex([1,2,3,4,5])
+print (s3)
+
+#reindexation by interpolating the values between the holes
+
+
 #Create a dataframe based on a CSV : Extract file of csv
 # on the file marx-geo.csv there is fields number error ==> I use the option error_bad_lines=False to bypass these errors
 # Seeing that this is a timeseries, I use the first column as datetime as the index: this is the option index_col='datetime'
@@ -49,4 +56,4 @@ marx = pd.read_csv ('c:/users/opotmans/Downloads/marx-geo.csv',error_bad_lines=F
 print(marx.head())
 #to display the index of the dataframe (marx)
 print(marx.index)
-print (marx.)
+
