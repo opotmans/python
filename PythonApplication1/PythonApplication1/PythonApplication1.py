@@ -78,9 +78,9 @@ dates = pd.date_range('11-19-2017',periods=10)
 print (dates)
 df1= pd.DataFrame(np.random.random(6,4),index=dates,columns=('ABCD'))
 print (df)
-print(df.tz_localize[dates[2.5],'A':'C']
+print(df.loc[dates[2.5],'A':'C'])
 #command to select /slice the dataframe to obtain the expected data
 #iloc[] locate the data based on the position in the matrix warning!!! the rows and the columns start with 0
 print (df.iloc[0:2,2:3])
 #loc locate with the title of the line and the column can used object like lists or tables
-print (df.iloc[dates[0:2],'B':'D'])
+print(df.loc[dates[0:2],'B':'D'])
