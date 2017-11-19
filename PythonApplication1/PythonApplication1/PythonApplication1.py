@@ -1,6 +1,9 @@
 
 import numpy as np
 import pandas as pd
+import datetime
+#import timeit for the measure of execution
+import timeit
 
 #import the datetime library used by Panda for time series data
 import matplotlib.pyplot as plt
@@ -56,4 +59,17 @@ marx = pd.read_csv ('c:/users/opotmans/Downloads/marx-geo.csv',error_bad_lines=F
 print(marx.head())
 #to display the index of the dataframe (marx)
 print(marx.index)
+
+#measure importance of the index in pandas with timeit
+np.random.seed(123456)
+df= pd.DataFrame({'foo':np.random.random(10000),'key':range(100,10100)})
+print (df[:5])
+
+#use the class timeit to calculate the execution time
+# error in the "learning pandas" book: the working of timeit is not correctly used 
+timeit.timeit(stmt='df[:3]',setup='import pandas as pd;import numpy as np; np.random.seed(123456);df= pd.DataFrame({"foo":np.random.random(10000),"key":range(100,10100)})')
+df_with_index = df.set_index(['key'])
+print(timeit.timeit (setup='pass',stmt='print(df_with_index.loc[10099])'))
+
+
 
