@@ -67,9 +67,20 @@ print (df[:5])
 
 #use the class timeit to calculate the execution time
 # error in the "learning pandas" book: the working of timeit is not correctly used 
-timeit.timeit(stmt='df[:3]',setup='import pandas as pd;import numpy as np; np.random.seed(123456);df= pd.DataFrame({"foo":np.random.random(10000),"key":range(100,10100)})')
-df_with_index = df.set_index(['key'])
-print(timeit.timeit (setup='pass',stmt='print(df_with_index.loc[10099])'))
+# calculate time without index
+# timeit.timeit(stmt='df[:3]',setup='import pandas as pd;import numpy as np; np.random.seed(123456);df= pd.DataFrame({"foo":np.random.random(10000),"key":range(100,10100)})')
+# calcule time with index --> variable must be imported from the main function if you want to use the timeit function of the timeit module
+# df_with_index = df.set_index(['key'])
+# timeit.timeit (setup='from __main__ import df_with_index',stmt='print(df_with_index.loc[10099])')
 
-
-
+#commands to learn for managing the pandas table
+dates = pd.date_range('11-19-2017',periods=10)
+print (dates)
+df1= pd.DataFrame(np.random.random(6,4),index=dates,columns=('ABCD'))
+print (df)
+print(df.tz_localize[dates[2.5],'A':'C']
+#command to select /slice the dataframe to obtain the expected data
+#iloc[] locate the data based on the position in the matrix warning!!! the rows and the columns start with 0
+print (df.iloc[0:2,2:3])
+#loc locate with the title of the line and the column can used object like lists or tables
+print (df.tz_loc[dates[0:2],'B':'D'])
