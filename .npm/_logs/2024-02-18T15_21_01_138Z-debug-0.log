@@ -1,0 +1,63 @@
+0 verbose cli [
+0 verbose cli   '/usr/bin/node',
+0 verbose cli   '/usr/share/nodejs/npm/bin/npm-cli.js',
+0 verbose cli   'exec',
+0 verbose cli   '--',
+0 verbose cli   'flowise',
+0 verbose cli   'start',
+0 verbose cli   '--PORT',
+0 verbose cli   '8888'
+0 verbose cli ]
+1 info using npm@8.5.1
+2 info using node@v12.22.9
+3 timing npm:load:whichnode Completed in 1ms
+4 timing config:load:defaults Completed in 1ms
+5 timing config:load:file:/usr/share/nodejs/npm/npmrc Completed in 3ms
+6 timing config:load:builtin Completed in 3ms
+7 timing config:load:cli Completed in 1ms
+8 timing config:load:env Completed in 0ms
+9 timing config:load:file:/.npmrc Completed in 0ms
+10 timing config:load:project Completed in 1ms
+11 timing config:load:file:/home/opotmans/.npmrc Completed in 1ms
+12 timing config:load:user Completed in 1ms
+13 timing config:load:file:/etc/npmrc Completed in 0ms
+14 timing config:load:global Completed in 0ms
+15 timing config:load:validate Completed in 0ms
+16 timing config:load:credentials Completed in 1ms
+17 timing config:load:setEnvs Completed in 0ms
+18 timing config:load Completed in 10ms
+19 timing npm:load:configload Completed in 10ms
+20 timing npm:load:setTitle Completed in 1ms
+21 timing config:load:flatten Completed in 2ms
+22 timing npm:load:display Completed in 3ms
+23 verbose logfile /home/opotmans/.npm/_logs/2024-02-18T15_21_01_138Z-debug-0.log
+24 timing npm:load:logFile Completed in 4ms
+25 timing npm:load:timers Completed in 0ms
+26 timing npm:load:configScope Completed in 0ms
+27 timing npm:load Completed in 19ms
+28 http fetch GET 200 https://registry.npmjs.org/flowise 242ms (cache miss)
+29 timing arborist:ctor Completed in 0ms
+30 timing arborist:ctor Completed in 0ms
+31 timing command:exec Completed in 5394ms
+32 verbose stack Error: canceled
+32 verbose stack     at Interface.<anonymous> (/usr/share/nodejs/read/lib/read.js:66:13)
+32 verbose stack     at Interface.emit (events.js:314:20)
+32 verbose stack     at Interface._ttyWrite (readline.js:868:16)
+32 verbose stack     at ReadStream.onkeypress (readline.js:205:10)
+32 verbose stack     at ReadStream.emit (events.js:314:20)
+32 verbose stack     at emitKeys (internal/readline/utils.js:335:14)
+32 verbose stack     at emitKeys.next (<anonymous>)
+32 verbose stack     at ReadStream.onData (readline.js:1137:36)
+32 verbose stack     at ReadStream.emit (events.js:314:20)
+32 verbose stack     at addChunk (_stream_readable.js:297:12)
+33 verbose cwd /
+34 verbose Linux 5.15.133.1-microsoft-standard-WSL2
+35 verbose argv "/usr/bin/node" "/usr/share/nodejs/npm/bin/npm-cli.js" "exec" "--" "flowise" "start" "--PORT" "8888"
+36 verbose node v12.22.9
+37 verbose npm  v8.5.1
+38 error canceled
+39 verbose exit 1
+40 timing npm Completed in 5883ms
+41 verbose code 1
+42 error A complete log of this run can be found in:
+42 error     /home/opotmans/.npm/_logs/2024-02-18T15_21_01_138Z-debug-0.log
