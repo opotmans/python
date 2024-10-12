@@ -1,6 +1,6 @@
 import os
 from crewai import Agent, Task, Crew, Process
-
+#ceci est un test
 #from langchain_openai import ChatOpenAI 
 from openai import OpenAI
 
