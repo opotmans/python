@@ -8,11 +8,12 @@ from llama_index.llms.ollama import Ollama
 
 # Load the document for the creation of the knowledge based"
 documents = SimpleDirectoryReader("/root/data").load_data()
-print(documents)
+#print(documents)
 
 # Load the embedding model
 # Option 1 : use the huggingface requires the installation of the modules
 # download le modèle bert sur huggingface
+#test
 
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 embed_model = HuggingFaceEmbedding()
