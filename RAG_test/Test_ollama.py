@@ -33,16 +33,13 @@ import qdrant_client.models as qmodels
 from qdrant_client.models import *
 
 print ("client")
-client = qdrant_client.QdrantClient(
-    host = "172.22.208.167",
-    port = 6333
-    )
+client = qdrant_client.QdrantClient(url="http://172.22.208.167:6333")
+
 print ("recreate")
 client.create_collection(
         collection_name="RAG_test",
         vectors_config=VectorParams(size = 384, distance=Distance.COSINE)
         )
-)
 
 print("vector_store")
 vector_store = QdrantVectorStore(client=client, collection_name='RAG_test')
@@ -59,7 +56,11 @@ index= VectorStoreIndex.from_documents(
     embed_model = embed_model
 )
 
-
+query_engine = index.as_query_engine()
+response = query_engine.query(
+    "Write an email to the user given their background information."
+)
+print(response)
 
 #Initialize the model Mistral
 #llm = Ollama (model="dolphin-mistral:latest")
