@@ -33,12 +33,6 @@ import qdrant_client.http.models as qmodels
 from qdrant_client.http.models import *
 
 
-client = qdrant_client.QdrantClient(
-    host = "172.22.208.167",
-    port = 6333
-    )
-
-
 
 client.recreate_collection(
         collection_name="RAG_test",
@@ -47,7 +41,10 @@ client.recreate_collection(
             distance=qmodels.Distance.COSINE
         )
 )
-
+client = qdrant_client.QdrantClient(
+    host = "172.22.208.167",
+    port = 6333
+    )
 
 vector_store = QdrantVectorStore(client=client, collection_name="RAG_test")
 #import chromadb
