@@ -37,7 +37,7 @@ client = qdrant_client.QdrantClient(
 
 client.recreate_collection(
     collection_name="RAG_test",
-    vectors_config = qmodels VectorParams(
+    vectors_config = qmodels.VectorParams(
         size=384,
         distance="COSINE"
     )
