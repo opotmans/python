@@ -1,6 +1,6 @@
 from llama_index.core import SimpleDirectoryReader, StorageContext
 from llama_index.core import VectorStoreIndex
-from llama_index.embeddings.fastembed import FastEmbedEmbedding
+#from llama_index.embeddings.fastembed import FastEmbedEmbedding
 #from llama_index.core.ingestion import IngestionPipeline
 from llama_index.core.node_parser import TokenTextSplitter
 from llama_index.llms.ollama import Ollama
