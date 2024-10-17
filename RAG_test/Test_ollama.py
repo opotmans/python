@@ -19,7 +19,7 @@ documents = SimpleDirectoryReader("/root/data").load_data()
 print("enter into Hugging")
 
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
-embed_model = HuggingFaceEmbedding()
+embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
 
 
 #Indexing and storing embedding on disk
