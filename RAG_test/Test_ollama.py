@@ -29,6 +29,7 @@ embed_model = HuggingFaceEmbedding()
 print("enter into qdrant")
 from llama_index.vector_stores.qdrant import QdrantVectorStore
 import qdrant_client
+import qdrant_client.http.models as qmodels
 from qdrant_client.http.models import *
 
 
@@ -36,6 +37,17 @@ client = qdrant_client.QdrantClient(
     host = "172.22.208.167",
     port = 6333
     )
+
+
+
+client.recreate_collection(
+        collection_name="RAG_test",
+        vectors_config=qmodels.VectorParams(
+            size = 384,
+            distance=qmodels.Distance.COSINE
+        )
+)
+
 
 vector_store = QdrantVectorStore(client=client, collection_name="RAG_test")
 #import chromadb
