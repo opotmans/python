@@ -29,8 +29,8 @@ embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
 print("enter into qdrant")
 from llama_index.vector_stores.qdrant import QdrantVectorStore
 import qdrant_client
-import qdrant_client.http.models as qmodels
-from qdrant_client.http.models import *
+import qdrant_client.models as qmodels
+from qdrant_client.models import *
 
 print ("client")
 client = qdrant_client.QdrantClient(
@@ -38,16 +38,14 @@ client = qdrant_client.QdrantClient(
     port = 6333
     )
 print ("recreate")
-client.recreate_collection(
+client.create_collection(
         collection_name="RAG_test",
-        vectors_config=qmodels.VectorParams(
-            size = 384,
-            distance=qmodels.Distance.COSINE
+        vectors_config=VectorParams(size = 384, distance=Distance.COSINE)
         )
 )
 
 print("vector_store")
-vector_store = QdrantVectorStore(client=client, collection_name="RAG_test")
+vector_store = QdrantVectorStore(client=client, collection_name='RAG_test')
 #import chromadb
 #from llama_index.vector_stores.chroma import ChromaVectorStore
 #db = chromadb.PersistentClient(path="./test_chromadb")
