@@ -31,7 +31,7 @@ from llama_index.vector_stores.qdrant import QdrantVectorStore
 import qdrant_client
 
 client = qdrant_client.QdrantClient(
-    host = "172.22.208.167"
+    host = "172.22.208.167",
     port = 6333
     )
 
