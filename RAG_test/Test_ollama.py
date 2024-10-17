@@ -1,6 +1,6 @@
 from llama_index.core import SimpleDirectoryReader, StorageContext
 from llama_index.core import VectorStoreIndex
-
+from llama_index.embeddings.fastembed import FastEmbedEmbedding
 #from llama_index.core.ingestion import IngestionPipeline
 from llama_index.core.node_parser import TokenTextSplitter
 from llama_index.llms.ollama import Ollama
@@ -34,6 +34,14 @@ client = qdrant_client.QdrantClient(
     host = "172.22.208.167",
     port = 6333
     )
+
+client.recreate_collection(
+    collection_name="RAG_test",
+    vectors_config = qmodels VectorParams(
+        size=384,
+        distance="COSINE"
+    )
+)
 
 vector_store = QdrantVectorStore(client=client, collection_name="RAG_test")
 #import chromadb
