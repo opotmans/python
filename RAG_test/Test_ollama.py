@@ -32,14 +32,12 @@ import qdrant_client
 import qdrant_client.http.models as qmodels
 from qdrant_client.http.models import *
 
-print("client")
+print ("client")
 client = qdrant_client.QdrantClient(
     host = "172.22.208.167",
     port = 6333
     )
-
-
-print("recreate")
+print ("recreate")
 client.recreate_collection(
         collection_name="RAG_test",
         vectors_config=qmodels.VectorParams(
