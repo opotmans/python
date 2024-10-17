@@ -38,7 +38,7 @@ client = qdrant_client.QdrantClient(
     port = 6333
     )
 print ("recreate")
-client.recreate_collection(
+client.create_collection(
         collection_name="RAG_test",
         vectors_config=qmodels.VectorParams(
             size = 384,
