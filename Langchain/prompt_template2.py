@@ -106,7 +106,7 @@ chain = prompt | llm | output_parser
 
 result=chain.invoke({"query": joke_query})
 
-print(result)
+print(result) 
 
 #Exercice 3 : JsonOutputParser
 # ============================
@@ -126,25 +126,3 @@ print(result)
 
 # print(result)
 
-
-#exercice 4: return a structured data from a LLM using pydantic
-#==============================================================
-# from pydantic import BaseModel,Field
-# from typing import Optional
-
-# #attention point: it seems that the method .with_structured_output is related to ChatOllama
-# from langchain_community.chat_models import ChatOllama
-
-# llm2 = ChatOllama(model="Llama3.2")
-# class Joke(BaseModel):
-#     """Joke to tell user."""
-
-#     setup: str = Field(description="The setup of the joke")
-#     punchline: str = Field(description="The punchline to the joke")
-#     rating: Optional[int] = Field(
-#         default=None, description="How funny the joke is, from 1 to 10"
-#     )
-
-# structured_llm = llm2.with_structured_output(Joke)
-
-# structured_llm.invoke("Tell me a joke")
