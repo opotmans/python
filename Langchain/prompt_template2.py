@@ -1,10 +1,10 @@
-from langchain_ollama import OllamaLLM
+from langchain_ollama.llms import OllamaLLM
 
 llm = OllamaLLM(
-    model="dolphin-mistral:latest",
-    temperature=0.7,
-    num_predict = 256,
-    )
+     model="llama3.2",
+     temperature=0.7,
+     num_predict = 256,
+     )
 
 #----------------------------------------------------------------------
 #Use of PromptTemplate
@@ -49,11 +49,102 @@ from langchain_core.prompts import PromptTemplate,check_valid_template
 #Exercice 3: Load a prompt
 #==========================
 
-prompt = PromptTemplate.from_file (
-    template_file = "/home/opotmans/Langchain/prompt.txt",
+# prompt = PromptTemplate.from_file (
+#     template_file = "/home/opotmans/Langchain/prompt.txt",
+# )
+
+# result = prompt | llm 
+# print (result.invoke(prompt.partial_variables))
+# check_valid_template (prompt)
+
+# -----------------------------------------------------------------------------
+#ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate,check_valid_template 
+
+#Exercice 1: ChatpromptTemplate 
+#==============================
+
+# prompt = ChatPromptTemplate([
+#     ("system","you are a specialist in {techno}"),
+#     ("human","Could you please define microsoft entra"),
+#     ("AI","")
+# ])
+
+# from langchain_core.output_parsers import StrOutputParser
+
+# analysis_prompt = ChatPromptTemplate.from_template("is this a funny joke? {joke}")
+
+# composed_chain = {"joke": chain} | analysis_prompt | llm | StrOutputParser()
+
+# composed_chain.invoke({"topic": "bears"})
+
+#Exercice 2 : JsonOutputParser
+# ============================
+# Define your desired data structure.
+
+from langchain_core.output_parsers import JsonOutputParser
+from pydantic import BaseModel, Field
+
+class Joke(BaseModel):
+    setup: str = Field(description="question to set up a joke")
+    punchline: str = Field(description="answer to resolve the joke")
+    conclusion : str = Field (description="explain the joke")
+
+# And a query intented to prompt a language model to populate the data structure.
+joke_query = "Tell me a joke."
+
+# Set up a parser + inject instructions into the prompt template.
+output_parser = JsonOutputParser(pydantic_object=Joke)
+
+prompt = PromptTemplate(
+    template="Answer the user query.\n{format_instructions}\n{query}\n",
+    input_variables=["query"],
+    partial_variables={"format_instructions": output_parser.get_format_instructions()},
 )
 
-result = prompt | llm 
-print (result.invoke(prompt.partial_variables))
-check_valid_template (prompt)
-# -----------------------------------------------------------------------------
+chain = prompt | llm | output_parser
+
+result=chain.invoke({"query": joke_query})
+
+print(result)
+
+#Exercice 3 : JsonOutputParser
+# ============================
+# Define your desired data structure.
+# from langchain_core.output_parsers import CommaSeparatedListOutputParser
+
+# output_parser = CommaSeparatedListOutputParser()
+# format_instructions = output_parser.get_format_instructions()
+# prompt = PromptTemplate(
+#     template="Who is {subject}.\n{format_instructions}",
+#     input_variables=["subject"],
+#     partial_variables={"format_instructions": format_instructions},
+# )
+# chain = prompt | llm | output_parser
+
+# result=chain.invoke({"subject": "Einstein"})
+
+# print(result)
+
+
+#exercice 4: return a structured data from a LLM using pydantic
+#==============================================================
+# from pydantic import BaseModel,Field
+# from typing import Optional
+
+# #attention point: it seems that the method .with_structured_output is related to ChatOllama
+# from langchain_community.chat_models import ChatOllama
+
+# llm2 = ChatOllama(model="Llama3.2")
+# class Joke(BaseModel):
+#     """Joke to tell user."""
+
+#     setup: str = Field(description="The setup of the joke")
+#     punchline: str = Field(description="The punchline to the joke")
+#     rating: Optional[int] = Field(
+#         default=None, description="How funny the joke is, from 1 to 10"
+#     )
+
+# structured_llm = llm2.with_structured_output(Joke)
+
+# structured_llm.invoke("Tell me a joke")
