@@ -1,12 +1,14 @@
 import os
-from crewai import Agent, Task, Crew, Process
+from crewai import Agent, Task, Crew, Process,LLM
 #ceci est un test
 #from langchain_openai import ChatOpenAI 
-from openai import OpenAI
 
 os.environ["OPENAI_API_KEY"] = "sk-1111"
 
-llm_lmstudio = OpenAI(base_url="http://127.0.0.1:11434/v1",api_key="")
+llm = LLM (
+    model="llama3.2",
+    api_key="sk-1111",
+    base_url="http://127.0.0.1:11434/v1")
 
 #Create researcher agent 
 researcher = Agent (
