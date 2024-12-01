@@ -1,0 +1,20 @@
+[project]
+name = "search_web"
+version = "0.1.0"
+description = "search_web using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<=3.13"
+dependencies = [
+    "crewai[tools]>=0.83.0,<1.0.0"
+]
+
+[project.scripts]
+search_web = "search_web.main:run"
+run_crew = "search_web.main:run"
+train = "search_web.main:train"
+replay = "search_web.main:replay"
+test = "search_web.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
