@@ -18,7 +18,7 @@ class SearchWeb():
 	tasks_config = 'config/tasks.yaml'
 
 	ollama_llm =LLM (
-		model ='ollama/llama3.2:latest',
+		model ='ollama/llama3.1:latest',
 		base_url="http://localhost:11434"
 	)
 
