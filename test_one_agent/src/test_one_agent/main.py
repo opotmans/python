@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 import sys
 import warnings
-from datetime import datetime
 
-from crew import SearchWeb
+from test_one_agent.crew import TestOneAgent
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
@@ -17,23 +16,22 @@ def run():
     Run the crew.
     """
     inputs = {
-        'topic': 'Artificial Intelligence Trends',
-        'date': datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+        'topic':'Quantum computing'
     }
-    SearchWeb().crew().kickoff(inputs=inputs)
+    TestOneAgent().crew().kickoff(inputs=inputs)
 
-run()
 
+run() 
 
 # def train():
 #     """
 #     Train the crew for a given number of iterations.
 #     """
 #     inputs = {
-#         "topic": "Olivier Potmans"
+#         "topic": "AI LLMs"
 #     }
 #     try:
-#         SearchWeb().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
+#         TestOneAgent().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
 
 #     except Exception as e:
 #         raise Exception(f"An error occurred while training the crew: {e}")
@@ -43,7 +41,7 @@ run()
 #     Replay the crew execution from a specific task.
 #     """
 #     try:
-#         SearchWeb().crew().replay(task_id=sys.argv[1])
+#         TestOneAgent().crew().replay(task_id=sys.argv[1])
 
 #     except Exception as e:
 #         raise Exception(f"An error occurred while replaying the crew: {e}")
@@ -56,7 +54,7 @@ run()
 #         "topic": "AI LLMs"
 #     }
 #     try:
-#         SearchWeb().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
+#         TestOneAgent().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
 
 #     except Exception as e:
 #         raise Exception(f"An error occurred while replaying the crew: {e}")

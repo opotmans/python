@@ -1,0 +1,16 @@
+research_task:
+  description: >
+    Conduct a thorough research about {topic}
+    Make sure you find any interesting and relevant information given
+    the current year is 2024.
+  expected_output: >
+    A list with 10 bullet points of the most relevant information about {topic}
+  agent: researcher
+
+write_task:
+  description: >
+   Write an elegant document in the format markdown with the title Relevant_{topic}.md
+  expected_output: >
+    A fully fledge report with the mains topics, each with a full section of information.
+    Formatted as markdown without '```'
+  agent: reporter

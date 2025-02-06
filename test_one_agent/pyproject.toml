@@ -1,7 +1,7 @@
 [project]
-name = "search_web"
+name = "test_one_agent"
 version = "0.1.0"
-description = "search_web using crewAI"
+description = "test_one_agent using crewAI"
 authors = [
     { name = "Your Name", email = "you@example.com" },
 ]
@@ -11,11 +11,11 @@ dependencies = [
 ]
 
 [project.scripts]
-search_web = "search_web.main:run"
-run_crew = "search_web.main:run"
-train = "search_web.main:train"
-replay = "search_web.main:replay"
-test = "search_web.main:test"
+test_one_agent = "test_one_agent.main:run"
+run_crew = "test_one_agent.main:run"
+train = "test_one_agent.main:train"
+replay = "test_one_agent.main:replay"
+test = "test_one_agent.main:test"
 
 [build-system]
 requires = [

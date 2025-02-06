@@ -13,13 +13,17 @@ load_dotenv()
 @CrewBase
 class SearchWeb():
 	"""SearchWeb crew"""
-
+	
 	agents_config = 'config/agents.yaml'
 	tasks_config = 'config/tasks.yaml'
 
 	ollama_llm =LLM (
-		model ='ollama/llama3.1:latest',
-		base_url="http://localhost:11434"
+		model ='ollama/deepseek-r1',
+		timeout =120,
+		num_ctx = 20000,
+		base_url="http://localhost:11434",
+		max_tokens = 10000,
+		temperature = 1
 	)
 
 	@before_kickoff # Optional hook to be executed before the crew starts
@@ -102,6 +106,13 @@ class SearchWeb():
 			agents=self.agents, # Automatically created by the @agent decorator
 			tasks=self.tasks, # Automatically created by the @task decorator
 			process=Process.sequential,
-			verbose=True,
+			# memory=True,
+		    verbose=True,
+			# embedder={
+			# 	"provider": 'ollama',
+			# 	"config": {
+			# 		"model":"llama3.2" 
+			# }
+			#} 
 			# process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
 		)
