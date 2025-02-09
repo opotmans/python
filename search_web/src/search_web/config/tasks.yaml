@@ -2,7 +2,7 @@ retrieve_news_task:
   description: >
     Conduct a thorough research about {topic}
     Make sure you find any interesting and relevant information given
-    the current year is 2024.
+    the current year is 2025.
   expected_output: >
     The list of 3 websites with the most relevant information about {topic}
   agent: retrieve_news
@@ -28,3 +28,9 @@ file_write_task:
   expected_output: >
     A fully fledge news article with all information from previous task into a file named {date}_news_article.md in the directory ./news
   agent: file_writer
+  output_file: report.md
+  context: 
+    - ai_news_write_task
+
+
+

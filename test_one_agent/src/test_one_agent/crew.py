@@ -52,12 +52,10 @@ class TestOneAgent():
 			verbose=True,
 			llm = self.ollama_llm
 	 	)
-
-	@task
+	@task 
 	def write_task(self) -> Task:
 		return Task(
-			config=self.tasks_config['write_task'],
-			output_file='report.md'
+			config=self.tasks_config['write_task']
 		)
 
 	@crew

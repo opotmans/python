@@ -20,3 +20,11 @@ pip install -g crewai
 exit
 npx flowise start --PORT 8888
 exit
+micromamba activate mamba_new
+micromamba activate new_mamba
+exit
+cd /home/opotmans/search_web/src/search_web/
+ls
+python main.py
+micromamba activate crewai
+exit

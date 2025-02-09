@@ -25,6 +25,8 @@ class SearchWeb():
 		max_tokens = 10000,
 		temperature = 1
 	)
+#initialisation de l'outil d'écrire dans le fichier
+	#filewritetool = FileWriterTool()
 
 	@before_kickoff # Optional hook to be executed before the crew starts
 	def pull_data_example(self, inputs):
@@ -95,6 +97,7 @@ class SearchWeb():
 	@task
 	def file_write_task(self) -> Task:
 		return Task(
+			tools = [FileWriterTool()],
 			config=self.tasks_config['file_write_task'],
 		)
 
