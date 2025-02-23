@@ -12,6 +12,7 @@ load_dotenv()
 @CrewBase
 class Projet2Simplefile():
 	"""Projet2Simplefile crew"""
+
 	# Learn more about YAML configuration files here:
 	# Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
 	# Tasks: https://docs.crewai.com/concepts/tasks#yaml-configuration-recommended
@@ -20,12 +21,13 @@ class Projet2Simplefile():
 
 	ollama_llm =LLM (
 		model ='ollama/deepseek-r1',
-		#timeout =120,
+		timeout =120,
+		num_ctx = 20000,
 		base_url="http://localhost:11434",
 		max_tokens = 10000,
 		temperature = 1
 	)
-	
+
 	@before_kickoff # Optional hook to be executed before the crew starts
 	def pull_data_example(self, inputs):
 			# Example of pulling data from an external API, dynamically changing the inputs
@@ -44,39 +46,23 @@ class Projet2Simplefile():
 	def researcher(self) -> Agent:
 		return Agent(
 			config=self.agents_config['researcher'],
-			#max_execution_time=60,
+			max_execution_time=60,
 			max_iter = 3,
 			llm=self.ollama_llm,
-			#tools = [FileWriterTool()],
+			tools = [FileWriterTool()]
 			verbose=True
 		)
-	@agent
-	def writer(self) -> Agent:
-		return Agent(
-			config=self.agents_config['writer'],
-			#max_execution_time=60,
-			max_iter = 3,
-			llm=self.ollama_llm,
-			tools = [FileWriterTool()],
-			verbose=True
-		)
+	
 	# To learn more about structured task outputs, 
 	# task dependencies, and task callbacks, check out the documentation:
 	# https://docs.crewai.com/concepts/tasks#overview-of-a-task
+
 	@task
 	def research_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['research_task'],
-			verbose=True,
 		)
-	@task
-	def write_file_task(self) -> Task:
-		return Task(
-			config=self.tasks_config['write_file_task'],
-			context=["research_task"],
-			output_file="test.txt",
-			verbose=True
-		)
+
 	@crew
 	def crew(self) -> Crew:
 		"""Creates the Projet2Simplefile crew"""

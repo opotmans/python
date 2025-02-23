@@ -1,0 +1,23 @@
+[project]
+name = "projet3_filewritertool"
+version = "0.1.0"
+description = "Projet3_FileWriterTool using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=0.102.0,<1.0.0"
+]
+
+[project.scripts]
+projet3_filewritertool = "projet3_filewritertool.main:run"
+run_crew = "projet3_filewritertool.main:run"
+train = "projet3_filewritertool.main:train"
+replay = "projet3_filewritertool.main:replay"
+test = "projet3_filewritertool.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
