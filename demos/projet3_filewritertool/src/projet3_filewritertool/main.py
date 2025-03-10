@@ -21,6 +21,8 @@ def run():
         'topic': 'AI_LLMs',
         'date': str(datetime.now().year)
     }
-    Projet3Filewritertool().crew().kickoff(inputs=inputs)
+    result = Projet3Filewritertool().crew().kickoff(inputs=inputs)
+    print(f"Pydantic Output: {result.pydantic}")
+    print(f"Tasks Output: {result.tasks_output}")
 
 run()
